@@ -4,15 +4,14 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Tue, 09 Aug 2022 17:31:45 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Aug 2022 17:32:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
             <title><![CDATA[抽象滲漏法則]]></title>
             <guid>3e7a8ffd78ba452b973dcdb019ed31a0</guid>
             <pubDate>Mon, 24 Feb 2020 18:56:08 GMT</pubDate>
-            <content:encoded><![CDATA[<h1 id="抽象滲漏法則">抽象滲漏法則</h1>
-<p>作者：周思博 (Joel Spolsky)
+            <content:encoded><![CDATA[<p>作者：周思博 (Joel Spolsky)
 譯：Paul May 梅普華
 Monday, November 11, 2002
 屬於Joel on Software, <a title="http://www.joelonsoftware.com/" href="http://www.joelonsoftware.com/">http://www.joelonsoftware.com</a></p>
@@ -50,9 +49,9 @@ All contents Copyright © 1999-2006 by Joel Spolsky. All Rights Reserved.</p>
             <guid>0106e90d30cb416d967ce580372f215a</guid>
             <pubDate>Mon, 24 Feb 2020 18:55:56 GMT</pubDate>
             <content:encoded><![CDATA[<p>——理察·康奈爾</p>
-<p>「右邊那裡就是舊海圖上的所謂沉舟島,」惠特尼說,「海員對那個地方有著莫名其妙的恐懼。迷信……」</p>
+<p>「右邊那裡就是舊海圖上的所謂沉舟島，」惠特尼說，「海員對那個地方有著莫名其妙的恐懼。迷信……」</p>
 <p>「看不見,」雷恩斯福德說。他試圖透過籠罩著遊艇的潮濕而悶熱的夜幕張望。</p>
-<p>「再過幾天到了巴西,天空就會晴朗多了,」惠特尼保證說,「我們應當在亞馬孫河上游痛痛快快地打打獵。打獵是一種好運動。」</p>
+<p>「再過幾天到了巴西,天空就會晴朗多了，」惠特尼保證說，「我們應當在亞馬孫河上游痛痛快快地打打獵。打獵是一種好運動。」</p>
 <p>「是世界上最好的運動，」雷恩斯福德表示同意。</p>
 <p>後來，他的夥伴下去睡覺了，雷恩斯福德留在甲板上再抽一袋煙。正吸菸時，一種意料不到的聲音使他吃了一驚，接連又是兩聲，黑夜中有人開了三槍。</p>
 <p>他朝槍響的方向極目眺望，但象是隔著一張毯子要透視過去似的。雷恩斯福德跳上船欄，以便站得更高些，菸斗撞著繩索，從嘴邊掉了下去。他急忙傾身抓菸斗，身體一下子失去了平衡，跌落到像熱血般溫暖的加勒比海中。他掙扎著游出水面，大聲呼喊。隨著遊艇的燈光越離越遠，他拚命地划水追趕，但是燈光很快就消失在夜色中。</p>
@@ -73,7 +72,7 @@ All contents Copyright © 1999-2006 by Joel Spolsky. All Rights Reserved.</p>
 <p>「我告訴你，我終於認識到，我必須創造出一種新的動物來獵取。我又問自己：理想的獵物應該具備哪些特點？答案是：必須有勇氣，有智謀–而最重要的是–必須具有思維能力。好在有一種動物能夠思維。」</p>
 <p>「你的意思該不會是說殺人吧？」</p>
 <p>「這詞兒多難聽，」將軍說道，「我獵取的不過是世上的渣滓–不定期貨船上的船員。來窗口看看吧，」他一按電鈕，遠方海上便出現閃光。「燈光指示出一航道，那裡都是些象剃刀那樣銳利的礁石，船隻碰上去就象堅果殼被碰碎似的。」</p>
-<p>「你要明白，這是一種遊戲。我向來客提出打獵的建議。讓他先走三小時。我隨後出發，只帶一隻22口徑手槍。如果受獵的人能三整天不讓我找到他，他就贏了。如果被我找到」–將軍微微一笑–「那他就輸了。」</p>
+<p>「你要明白，這是一種遊戲。我向來客提出打獵的建議。讓他先走三小時。我隨後出發，只帶一隻22口徑手槍。如果受獵的人能三整天不讓我找到他，他就贏了。如果被我找到」將軍微微一笑「那他就輸了。」</p>
 <p>「要是他不肯受獵呢？」</p>
 <p>「那麼我就把他交給伊凡，這個人頭腦簡單，曾經一度擔任過沙皇手下正式的鞭笞手，對於遊戲，有他自己一套想法。來客總是寧可打獵的。</p>
 <p>「如果客人贏了呢？」</p>
@@ -127,7 +126,7 @@ All contents Copyright © 1999-2006 by Joel Spolsky. All Rights Reserved.</p>
 《斜屋犯罪》感
 出場人物
 序幕
-〔第一幕〕第一場　流冰館的玄關<a href="/article/最危險的遊戲">最危险的游戏</a>
+〔第一幕〕第一場　流冰館的玄關<a href="/article/最危險的遊戲">最危險的遊戲</a>
 〔第一幕〕第二場　流冰館的會客室
 〔第一幕〕第三場　塔
 〔第一幕〕第四場　一號房
