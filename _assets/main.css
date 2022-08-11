@@ -331,8 +331,7 @@ template {
 }
 
 .main {
-  max-width: 800px;
-  width: 70%;
+  width: 85%;
   margin: 50px auto 50px;
 }
 
