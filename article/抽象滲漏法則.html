@@ -1,44 +1,259 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
+
+<head>
+  <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="stylesheet" href="/_assets/main.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css" />
+<style>
+.main {
+  width: 85%;
+  margin: 50px auto 50px;
+}
 
-    <title>抽象滲漏法則 - Abby&#39;s Notes</title>
-  </head>
-  <body>
-    <div class="main">
-      <nav class="navigation">
-        <a href="/">Abby&#39;s Notes</a>
-      </nav>
-      <article>
-        <header>
-          <h1 class="article-title">抽象滲漏法則</h1>
-          <div class="article-info">
-            <div>
-              <span
-                >Created At：<time datetime="1582570568000"
-                  >2020-02-25 03:56</time
-                ></span
-              >
-              <span
-                >Updated At：<time datetime="1660215692778"
-                  >2022-08-11 20:01</time
-                ></span
-              >
-            </div>
-            
+@media screen and (max-width: 600px) {
+  .main {
+    width: 85%;
+  }
+}
+
+.navigation {
+  margin-bottom: 50px;
+}
+.navigation a {
+  color: #ff001f;
+  text-decoration: underline solid;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+#homepage,
+#homepage body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.homepage-main {
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.homepage-title-area {
+  transition: opacity 1s;
+  margin-bottom: 60px;
+}
+
+.homepage-title,
+.homepage-subtitle {
+  text-align: center;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.homepage-title {
+  font-size: 30px;
+  margin: 0 0 10px;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-subtitle {
+  font-size: 12px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-navigation ul {
+  padding: 0;
+  text-align: center;
+}
+
+.homepage-navigation li {
+  list-style: none;
+  display: inline-block;
+  margin: 30px 0 0 30px;
+}
+.homepage-navigation li:first-child {
+  margin-left: 0;
+}
+
+.homepage-navigation a {
+  color: #dd4242;
+  text-decoration: none;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.homepage-navigation a:hover {
+  text-decoration: underline;
+}
+
+.about p {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.about li {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-top: 15px;
+}
+.about li a {
+  color: #000;
+  text-decoration: underline solid;
+}
+
+.article-title {
+  font-weight: normal;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.article-info {
+  color: #777777;
+  margin-bottom: 50px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.article-info span {
+  margin: 0 30px 0px 0;
+}
+
+.article-info .keyword {
+  margin: 5px 5px 0 0;
+  display: inline-block;
+}
+
+@font-face {
+  font-family: octicons-link;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.woff")
+    format('woff');
+}
+
+.blogs-list-block {
+  line-height: 1.5em;
+}
+.blogs-list-block ol {
+  margin-bottom: 60px;
+}
+@media screen and (max-width: 600px) {
+  .blogs-list-block ol {
+    padding-left: 1em;
+  }
+}
+.blogs-list-block li {
+  display: flex;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.annual-block {
+  margin-bottom: 50px;
+}
+
+.annual-block-headline {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.annual-block-title {
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+.annual-block-title.is-dir {
+  text-decoration: dotted underline;
+}
+
+.annual-block-date {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-right: 30px;
+  color: #999999;
+}
+
+.rss-link {
+  display: block;
+  width: 3em;
+  padding-left: 100%;
+  margin: 50px 0 100px -3em;
+  color: #000;
+}
+
+.error {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.error p {
+  font-size: 20px;
+}
+.error a {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  text-decoration: underline dotted;
+  color: #777777;
+}
+
+</style>
+
+    <title>
+      抽象滲漏法則 - Abby&#39;s Notes
+    </title>
+</head>
+
+<body>
+  <div class="main">
+    <nav class="navigation">
+      <a href="/">
+        Abby&#39;s Notes
+      </a>
+    </nav>
+    <article>
+      <header>
+        <h1 class="article-title">
+          抽象滲漏法則
+        </h1>
+        <div class="article-info">
+          <div>
+            <span>Created At: <time datetime="1582570568000">
+                2020-02-25 03:56
+              </time></span>
+            <span>Updated At: <time datetime="1660215692778">
+                2022-08-11 20:01
+              </time></span>
+          </div>
+          
             <div>
               Keywords: 
-              <span class="keyword">CS</span>
-              
+                <span class="keyword">
+                  CS
+                </span>
+                
             </div>
             
-          </div>
-        </header>
-        <div class="article-content markdown-body"><p>你每天不可或缺的Internet裡有個關鍵的小魔法，這個魔法就在TCP通訊協定這個internet的基礎協定裡。</p>
+        </div>
+      </header>
+      <div class="article-content markdown-body"><p>你每天不可或缺的Internet裡有個關鍵的小魔法，這個魔法就在TCP通訊協定這個internet的基礎協定裡。</p>
 <p>TCP是一種<em>可靠</em>的資料傳輸方法。我說可靠是指如果用TCP在網路上傳一個訊息，訊息一定會到，絕不會亂掉或壞掉。</p>
 <p>TCP的用途很多，比如抓取網頁資料或傳電子郵件都是。由於TCP這麼可靠，連那些挪用錢的東非人電郵(譯註：指有陣子常見到的騙人信)都能完整無缺的到達，真是好笑。</p>
 <p>相對的有另一種叫IP的<em>不可靠</em>資料傳輸方法。IP不保證資料會傳到，就算到了資料也可能會亂掉。如果你用IP傳送一堆訊息，很可能只有一半的訊息到達，而且其中還有一些到達的順序和原先傳送時的順序不同，另外可能有幾個訊息的內容會變掉，可能變成可愛的猩猩寶貝照片，更可能變成一堆看不懂的垃圾，看起來就像臺灣垃圾信的標題一樣。</p>
@@ -69,7 +284,8 @@
 <p><a title="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/" href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/</a></p>
 <p><a title="https://www.csie.ntu.edu.tw/~p92005/Joel/LeakyAbstractions.html" href="https://www.csie.ntu.edu.tw/~p92005/Joel/LeakyAbstractions.html">https://www.csie.ntu.edu.tw/~p92005/Joel/LeakyAbstractions.html</a></p>
 </div>
-      </article>
-    </div>
-  </body>
+    </article>
+  </div>
+</body>
+
 </html>
