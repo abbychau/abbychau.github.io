@@ -217,7 +217,7 @@
 </style>
 
     <title>
-      重復使用 Diffie-Hellman 密鑰交換漏洞 - Abby&#39;s Notes
+      The things I tested on a broadcast queue - multiqueue2 - Abby&#39;s Notes
     </title>
 </head>
 
@@ -231,81 +231,50 @@
     <article>
       <header>
         <h1 class="article-title">
-          重復使用 Diffie-Hellman 密鑰交換漏洞
+          The things I tested on a broadcast queue - multiqueue2
         </h1>
         <div class="article-info">
           <div>
-            <span>Created At: <time datetime="1683269857795">
-                2023-05-05 15:57
+            <span>Created At: <time datetime="1687721287850">
+                2023-06-26 04:28
               </time></span>
-            <span>Updated At: <time datetime="1683271757867">
-                2023-05-05 16:29
+            <span>Updated At: <time datetime="1687721315631">
+                2023-06-26 04:28
               </time></span>
           </div>
           
-            <div>
-              Keywords: 
-                <span class="keyword">
-                  computing
-                </span>
-                
-            </div>
-            
         </div>
       </header>
-      <div class="article-content markdown-body"><p><img src="https://i3.ytimg.com/vi/gVtjsd00fWo/maxresdefault.jpg" /><br />
-link: <a title="https://www.youtube.com/watch?v=gVtjsd00fWo" href="https://www.youtube.com/watch?v=gVtjsd00fWo">https://www.youtube.com/watch?v=gVtjsd00fWo</a></p>
-<p>好了，我其實不關心有沒有網站開始強制禁止 TLS 1.3 downgrade。下面是看完之後給還是不懂的人寫的一點小筆記。</p>
-<p>我把這個漏洞的原理命名為「重復使用Diffie-Hellman密鑰交換」好了</p>
-<p>概括來說：<br />
-利用這個漏洞有三步</p>
-<ol>
-<li>攻擊者先得知一些使用相同固定參數的Diffie-Hellman密鑰交換協商過程，記錄其中的通信數據和參數。這些參數通常由Web服務器預先設定，並在與客戶端進行安全協商時使用。參數下面再寫。</li>
-<li>攻擊者使用這些記錄下來的通信數據和參數，利用離線破解的方法計算出協商的對稱密鑰。</li>
-<li>利用對Negotiated Symetric Key (下稱NGK或代數s) 解密並記錄</li>
-</ol>
-<p>計算原理如下：</p>
-<ol>
-<li>
-<p>假設攻擊者攔截了使用固定參數的Diffie-Hellman密鑰交換協商過程，其中Web Server使用了預設的參數：</p>
-<pre><code> 質數 or p = 23
- 底 or g = 5
- Web服務器選擇的私鑰為a = 6
- 而現實上，p 是Oakley Group 2。(1024長度，768長度則是Group 1)
-</code></pre>
-</li>
-<li>
-<p>那麼攻擊者可以先計算 A = 5^6 mod 23 = 8</p>
-</li>
-<li>
-<p>client 和server 執行基於Diffie-Hellman 的 public key exchange</p>
-</li>
-<li>
-<p>假設client private key, b = 15, 好好記住這個代數b, 這是攻擊者的目標 , 那麼public key, <code>B = 5^15 mod 23 = 19</code></p>
-</li>
-<li>
-<p>Server 和 Client 各自使用對方的public key 和自己的private key 計算出NGK :<br />
-在這個例子中：</p>
-<p>web: s = B^a mod p = 19^6 mod 23 = 2<br />
-client: A^b mod p = 8^15 mod 23 = 2</p>
-</li>
-<li>
-<p>這步是關鍵的一步<br />
-攻擊者希望得到b，也就是client 的private key<br />
-也就是<code>b = logg(s) mod p = log5(2) mod 23 = 15</code></p>
-</li>
-</ol>
-<p>～～～～～～～～<br />
-第六步是這樣的：</p>
-<p>攻擊者可以先離線破解的部分在於：<br />
-<code>g^b = s (mod p)</code> 是一個離散對數問題<br />
-g和p 是固定的, s 是公開的</p>
-<p>那麼要在短時間內, 基於某個s 找出g^b，離散對數問題可以用BSGS 或者Pollard-rho 來解。time-complexity 是 sqrt(p)。而且parallelize well。</p>
-<p>那麼破解的重點在於把<code>g^b = s mod p</code> 裡面計算次序按p 為優先, 把所有可以給(p) -&gt; (g , b) 制成一個離散的對數表。</p>
-<p>那麼就可以在破解時利用它來減低 time-complexity。<br />
-計算所需的cpu time 在片的最後有說要多麼的苛刻就不重複了。</p>
-<p>我在Paper 中的 takeaway 是, 在這麼time-complexity reduction 下，增加key 長度的對破解時間需求的增加倍率不大。</p>
-<p>所以它終究來說不能成為長久可以依賴的算法。</p>
+      <div class="article-content markdown-body"><p>MultiQueue2 is a fast bounded mpmc queue that supports broadcast/broadcast style operations</p>
+<p>MultiQueue was developed by Sam Schetterer, but not updated for some time. I found it very useful as it implements futures. However, it is with a few outdated library API and the use of spin locks is taking 100% CPU in many cases.</p>
+<h1 id="stone-age">Stone Age</h1>
+<p>For any channels, if there is a potential for conflicts (more than one of the writers/readers are consuming the resources), there must be locks. So the 100% issue is very likely to be caused by a spinlock.</p>
+<p>At first, I did it in the <code>sleep way</code></p>
+<p>{% ghcode <a title="https://github.com/abbychau/multiqueue2/blob/a850ed674ccb7c2d47fddcbe72070cca0efa6cc2/src/wait.rs" href="https://github.com/abbychau/multiqueue2/blob/a850ed674ccb7c2d47fddcbe72070cca0efa6cc2/src/wait.rs">https://github.com/abbychau/multiqueue2/blob/a850ed674ccb7c2d47fddcbe72070cca0efa6cc2/src/wait.rs</a> 31 37 %}</p>
+<p>Nonetheless, I sacrified the throughput because I punished every check.</p>
+<p>And then, I tried a much <a title="https://github.com/abbychau/multiqueue2/commit/67ff0f3dc8e33467125a7fe6b5a57b25747678eb" href="https://github.com/abbychau/multiqueue2/commit/67ff0f3dc8e33467125a7fe6b5a57b25747678eb">smaller sleep</a>. This is just meaningless because it does not trigger CPU from P-State to S-State. And I immediately find that it may be fool to cocerce S-State in a spinlock design.</p>
+<p>And then I tried 1ms,10ms,1000ns, for both settings of <code>check after wait</code> or <code>check before wait</code>. <a title="https://github.com/abbychau/multiqueue2/commit/d3c9403762a34bbe11642419f66658844ec4d75d" href="https://github.com/abbychau/multiqueue2/commit/d3c9403762a34bbe11642419f66658844ec4d75d">link</a>. It does not make much different.</p>
+<p>I tried the <code>_mm_pause</code> from <code>SSE2</code> as well, but it does not make any different.</p>
+<p>{% ghcode <a title="https://github.com/abbychau/multiqueue2/blob/d82603a08a4d4e0875054e7dd9ac0a63dee928d5/src/wait.rs" href="https://github.com/abbychau/multiqueue2/blob/d82603a08a4d4e0875054e7dd9ac0a63dee928d5/src/wait.rs">https://github.com/abbychau/multiqueue2/blob/d82603a08a4d4e0875054e7dd9ac0a63dee928d5/src/wait.rs</a> 31 48 %}</p>
+<p>Although <code>_mm_pause</code> is designed for spinlock, but the point is CPU will not switch P-State and S-State just for a few nono-seconds. It is simply not the right way.</p>
+<h1 id="tool-age">Tool Age</h1>
+<p>Keep trying the trival ways will never proceed more (although it practically solved the system problem of 100% cpu usage in my program and my program is not required to be very performant too), so I stepped back and rethought about my first solution.</p>
+<p>The first solution was actually doing less checking and forcing the cpu to sleep, so that it does not waste too much energy to do useless checkings which are 99%(roughly) predictable.</p>
+<p>What I really want to punish are the collided conflicts, because they are very likely to be blocked again if the CPU checks in the next cycle. At this time, sleeping is better than checking.</p>
+<p>So I make the spinlock to be a swing-back one.</p>
+<p>{% ghcode <a title="https://github.com/abbychau/multiqueue2/blob/74dd8254c6c6f8f4148ef2be9d4f8ed9d89e124d/src/wait.rs" href="https://github.com/abbychau/multiqueue2/blob/74dd8254c6c6f8f4148ef2be9d4f8ed9d89e124d/src/wait.rs">https://github.com/abbychau/multiqueue2/blob/74dd8254c6c6f8f4148ef2be9d4f8ed9d89e124d/src/wait.rs</a> 31 42 %}</p>
+<p>This works exactly as expected. The cpu usage lowered and the through-put is able to pass all the tests.</p>
+<h1 id="futures">Futures</h1>
+<p>However, I then found that the CPU usage is high for future queues. That, there is a kind of hybrid lock used for future queues.</p>
+<p>Therefore, I removed all the Spin before going to <code>parking_lot::Mutex::new(VecDeque::new())</code>. <a title="https://github.com/abbychau/multiqueue2/commit/f311c7c02c392a656df85d662f8b3c1048536457" href="https://github.com/abbychau/multiqueue2/commit/f311c7c02c392a656df85d662f8b3c1048536457">link</a></p>
+<p>It increases the number of low level context switches very much but indeed lowed the CPU usage. By the nature of this heavy switch comparing to the light weight spinlock, the through-put of future queues becomes just 1/10 of the normal queue.</p>
+<p>And this experiment also taught me the performance ratio between <code>parking_lot</code> mutexes and native spins.</p>
+<h1 id="no-silver-bullet">No Silver Bullet</h1>
+<p>I really would like to come up with an equation for people to set the <code>try_spins</code> precisely, but it is very complicated because it includes all the envirnment information like CPU frequency, number of consumers, rate of feeding, etc.</p>
+<p>So I can just left it to the user.</p>
+<p>{% ghcode <a title="https://github.com/abbychau/multiqueue2/blob/master/src/multiqueue.rs" href="https://github.com/abbychau/multiqueue2/blob/master/src/multiqueue.rs">https://github.com/abbychau/multiqueue2/blob/master/src/multiqueue.rs</a> 1099 1125 %}</p>
+<p>I would like to investigate and develop a clear equation for concurrency hybrid lock, but it seems to be a bit long and I may have it later in a Paper form.</p>
+<p>Feel free to leave issues or comments.</p>
 </div>
     </article>
   </div>
