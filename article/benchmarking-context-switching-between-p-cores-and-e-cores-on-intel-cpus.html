@@ -238,17 +238,17 @@
             <span>Created At: <time datetime="1714389693882">
                 2024-04-29 20:21
               </time></span>
-            <span>Updated At: <time datetime="1714390502848">
-                2024-04-29 20:35
+            <span>Updated At: <time datetime="1714392771392">
+                2024-04-29 21:12
               </time></span>
           </div>
           
         </div>
       </header>
       <div class="article-content markdown-body"><h1 id="introduction">Introduction</h1>
-<p>The latest version of the game Cyberpunk 2077 has successfully implemented a strategy where all its threads are bound to the Performance Cores (P-Cores) of Intel CPUs. This optimization has sparked curiosity among developers and enthusiasts about the potential benefits of leveraging the heterogeneous architecture of modern Intel processors, which feature a combination of P-Cores and Efficient Cores (E-Cores).</p>
-<p>My hypothesis is that the separation of the L2 cache between E-Cores and P-Cores can introduce significant latency when switching between them. This latency can be particularly slow in certain CPU models, leading to performance degradation. By creating separate thread pools for E-Cores and P-Cores and strategically assigning threads to specific core types, substantial performance improvements can be achieved.</p>
-<p>To investigate this hypothesis and explore the impact of context switching between P-Cores and E-Cores, a benchmark program has been developed. This article will present the benchmark code, discuss the precautions taken during its development, and analyze the results obtained from running the benchmark on an Intel CPU with both P-Cores and E-Cores.</p>
+<p>The latest version of the game Cyberpunk 2077 has successfully implemented a strategy where all its threads are bound to the Performance Cores (P-Cores) of Intel CPUs. This optimization has sparked curiosity from me: why and how?</p>
+<p>My hypothesis is that the separation of the L2 cache between E-Cores and P-Cores can introduce significant latency when switching between them. This latency can be particularly slow in certain CPU models, leading to performance degradation. By creating separate thread pools for E-Cores and P-Cores and strategically assigning threads to specific core types, can substantial improve performance.</p>
+<p>To investigate this hypothesis and explore the impact of context switching between P-Cores and E-Cores, I developed a benchmark, and will discuss the precautions taken during its development, and analyze the results obtained from running the benchmark on an Intel CPU with both P-Cores and E-Cores.</p>
 <h1 id="benchmark-code">Benchmark Code</h1>
 <p>The benchmark program is written in C++ and utilizes the Windows API to retrieve processor information and set thread affinity. Here's the code:</p>
 <div><pre class="hljs"><code><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span>
@@ -363,19 +363,23 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
+<h2 id="explanation">Explanation</h2>
+<ol>
+<li>It retrieves processor information using the <code>GetLogicalProcessorInformationEx</code> function to determine the number of P-Cores and E-Cores available on the system.</li>
+<li>It then creates a specified number of benchmark threads (<code>numThreads</code>) and assigns each thread to a <code>benchmarkTask</code> function.</li>
+<li>Inside the <code>benchmarkTask</code>, it randomly selects a P-Core or E-Core for each iteration and sets the thread affinity accordingly using SetThreadAffinityMask. The selection is based on command-line flags: <code>--p-core-only</code> for running on P-Cores only, <code>--e-core-only</code> for running on E-Cores only, or no flag for forcing context switching between P-Cores and E-Cores.</li>
+<li>Each iteration of the <code>benchmarkTask</code> performs some CPU-intensive work, such as calculating the sum of sine and cosine values.<br />
+The program measures the total execution time of the benchmark using <code>std::chrono::high_resolution_clock</code> and displays it in milliseconds.</li>
+</ol>
 <h1 id="precautions">Precautions</h1>
-<p>When developing the benchmark program, several precautions were taken to ensure accurate and reliable results:</p>
-<p>Core Arrangement: Initially, the program assumed that P-Cores and E-Cores were arranged in a specific order, which was logically(but not practically) incorrect. It is crucial to retrieve the affinity masks from the processor information using the GetLogicalProcessorInformationEx function and set thread affinity correctly, regardless of the CPU model or core arrangement. This ensures that the benchmark accurately targets different core types and CPU models.</p>
-<p>Context Switching Location: There was a discussion about whether the context switching should happen within the benchmarkTask function or when creating the benchmark threads. It is essential to ensure that the context switching occurs inside the benchmarkTask to accurately measure the impact of switching between P-Cores and E-Cores. Performing context switching outside the task could lead to misleading results.</p>
-<p>Workload Characteristics: The benchmark program should be designed to simulate real-world workloads that are relevant to the software being optimized. The choice of CPU-intensive work performed in each iteration of the benchmarkTask should be representative of the actual workload. It is crucial to consider the specific characteristics of the software and adapt the benchmark accordingly.</p>
-<p>Sample Size and Statistical Significance: To obtain reliable results, the benchmark should be run multiple times, and the sample size should be sufficiently large to ensure statistical significance. It is important to consider the variability of the results and perform appropriate statistical analysis to draw meaningful conclusions.</p>
-<p>By taking these precautions into account, the benchmark program can provide more accurate and reliable insights into the performance impact of context switching between P-Cores and E-Cores on Intel CPUs.</p>
+<p><strong>Core Arrangement</strong>: Initially, the program assumed that P-Cores and E-Cores were arranged in a specific order, which was logically(but not practically) incorrect. It is crucial to retrieve the affinity masks from the processor information using the GetLogicalProcessorInformationEx function and set thread affinity correctly, regardless of the CPU model or core arrangement. This ensures that the benchmark accurately targets different core types and CPU models.</p>
+<p><strong>Context Switching Location</strong>: There was a discussion about whether the context switching should happen within the benchmarkTask function or when creating the benchmark threads. It is essential to ensure that the context switching occurs inside the benchmarkTask to accurately measure the impact of switching between P-Cores and E-Cores. Performing context switching outside the task could lead to misleading results.</p>
 <h1 id="results">Results</h1>
 <p>Running the benchmark program on an Intel CPU with both P-Cores and E-Cores yielded the following results:</p>
-<p>P-Core Only: The benchmark ran the fastest when all threads were bound to P-Cores only.<br />
-E-Core Only: The benchmark ran slower when all threads were bound to E-Cores only.<br />
-Mixed Mode: The benchmark exhibited the slowest performance when forcing context switching between P-Cores and E-Cores.</p>
-<p>These results align with the hypothesis that the separation of the L2 cache between E-Cores and P-Cores can introduce significant latency when switching between them. By binding threads to specific core types, as demonstrated in Cyberpunk 2077, performance can be optimized.</p>
+<p><strong>P-Core Only</strong>: The benchmark ran the fastest when all threads were bound to P-Cores only.<br />
+<strong>E-Core Only</strong>: The benchmark ran slower when all threads were bound to E-Cores only.<br />
+<strong>Mixed Mode</strong>: The benchmark exhibited the slowest performance when forcing context switching between P-Cores and E-Cores.</p>
+<p>These results align with the hypothesis that the separation of the L2 cache between E-Cores and P-Cores can introduce significant latency when switching between them.</p>
 <p>Here is my result on my i7 13700KF CPU (128GB DDR4 3200 Ram, Win 11)</p>
 <div><pre class="hljs"><code>.<span class="hljs-string">\bench.exe</span> 
 <span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> P-Cores: <span class="hljs-number">8</span>
@@ -390,10 +394,9 @@ Benchmark completed <span class="hljs-keyword">in</span> <span class="hljs-numbe
 <span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> E-Cores: <span class="hljs-number">8</span>
 Benchmark completed <span class="hljs-keyword">in</span> <span class="hljs-number">7447</span> milliseconds.</code></pre></div>
 <h1 id="conclusion">Conclusion</h1>
-<p>The benchmark program provided valuable insights into the performance impact of context switching between P-Cores and E-Cores on Intel CPUs. It highlighted the importance of considering the architectural differences between core types when designing and optimizing software.</p>
-<p>The results supported the hypothesis that the separation of the L2 cache can introduce latency when switching between E-Cores and P-Cores, and that binding threads to specific core types can lead to performance improvements.</p>
-<p>I think this may have a even large impact on seperated big.little CPUs like Quadcomm SnapDragon 810. Further exploration and testing on different CPU models and workloads would be beneficial to gain a more comprehensive understanding of the performance characteristics of P-Cores and E-Cores due to their physical latencies.</p>
-<p>Nonetheless, this experiment serves as a starting point for developers to investigate and optimize their software for heterogeneous CPU architectures. By strategically assigning threads to specific core types and minimizing context switching between E-Cores and P-Cores, developers can potentially improve performance and leverage the full potential of modern desktop/mobile CPUs (even Intel is planned to drop E-Core soon).</p>
+<p>In short, under heavy context switching, P-Core only &gt; E-Core Only &gt; Mixed mode.</p>
+<p>I think this may have a even large impact on seperated big.little CPUs like Quadcomm SnapDragon 810.</p>
+<p>I hope this experiment serves as a starting point for investigating and optimizing softwares for heterogeneous CPU architectures. By strategically assigning threads to specific core types and minimizing context switching between E-Cores and P-Cores, we potentially improve performance and leverage the full potential of modern desktop/mobile CPUs (even Intel is planned to drop E-Core soon).</p>
 <h1 id="appendix">Appendix</h1>
 <p>gist: <a title="https://gist.github.com/abbychau/8ac93aa252be9d37b7a69d93e09ab004" href="https://gist.github.com/abbychau/8ac93aa252be9d37b7a69d93e09ab004">https://gist.github.com/abbychau/8ac93aa252be9d37b7a69d93e09ab004</a></p>
 <p>main.cpp performance(by multiplying iterations for 100):<br />
