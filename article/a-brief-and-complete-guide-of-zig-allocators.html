@@ -238,8 +238,8 @@
             <span>Created At: <time datetime="1720035993632">
                 2024-07-04 04:46
               </time></span>
-            <span>Updated At: <time datetime="1720036257203">
-                2024-07-04 04:50
+            <span>Updated At: <time datetime="1720036614192">
+                2024-07-04 04:56
               </time></span>
           </div>
           
@@ -261,25 +261,25 @@
 <p><a title="https://ziglang.org/documentation/master/std/#std.mem.Allocator" href="https://ziglang.org/documentation/master/std/#std.mem.Allocator">https://ziglang.org/documentation/master/std/#std.mem.Allocator</a></p>
 <h2 id="allocator-list">Allocator List</h2>
 <p><strong>ArenaAllocator</strong>:<br />
-Wraps an existing allocator, alloc() will allocate without freeing, finally then free all together. (Example Usage: parsers, tcp streams...)</p>
+Wraps an existing allocator, <code>alloc()</code> will allocate without freeing, then free all together at the end. (Example Usage: parsers, tcp streams...)</p>
 <p><strong>FixedBufferAllocator</strong>:<br />
-Does aligned alloc with a specific length, store on a stackful byte array and alloc will move end_index (Usage: fast, any stackful)</p>
+Does aligned alloc with a specific length, store on a stackful byte array and alloc will move <code>end_index</code> (Usage: fast, any stackful)</p>
 <p><strong>GeneralPurposeAllocator</strong>:<br />
-Mutexed and bucketed heap allocation, will double its size by resizing when it is too full. (Usage: When lazy)</p>
+Mutexed and bucketed heap allocation, will double its size by resizing when alloc is oversized. (Usage: When lazy)</p>
 <p><strong>StackFallbackAllocator</strong>:<br />
-=FixedBufferAllocator, but can fallback to another(usually heapful) allocator if failed (super cool) (Usage: When lazy but not that lazy)</p>
+=FixedBufferAllocator, but can fallback to another(usually heapful) allocator if failed (super cool imo.) (Usage: When lazy but not that lazy)</p>
 <p><strong>PageAllocator</strong>:<br />
-Uses posix mmap or windows VirtualAlloc to write to a memory page managed by the OS (Usage: Make sure the OS will get the memory back)</p>
+Uses posix <code>mmap</code> or windows <code>VirtualAlloc</code> to write to a memory page managed by the OS (Usage: Make sure the OS will get the memory back immediately)</p>
 <p><strong>WasmAllocator/WasmPageAllocator</strong>:<br />
 TLDR: wasm only, growing at different manners, in 8bit vs 128bit data blocks</p>
 <p><strong>CAllocator</strong>:<br />
 =libc malloc API wrapper (Usage: wasm :))</p>
 <p><strong>SbrkAllocator</strong>:<br />
-Legacy Sbrk: wikipedia.org/wiki/Sbrk , naive version(mutex lock) (Usage: when you are using SYS_brk)</p>
+Legacy <a title="https://www.wikipedia.org/wiki/Sbrk" href="https://www.wikipedia.org/wiki/Sbrk">Sbrk</a>: naive version(mutex lock) (Usage: when you are using SYS_brk)</p>
 <h2 id="accessories">Accessories</h2>
 <p><strong>LogToWriterAllocator</strong>: Takes another allocator and a writer for loggin<br />
 <strong>LoggingAllocator</strong>: same, but the writer writes to stdout<br />
-<strong>MemoryPool</strong>: Can wrap any allocator with ArenaAllocator, forcing the size to be x*len(object) , so that alignedAlloc will work. (Example usage, parsers, char operations)</p>
+<strong>MemoryPool</strong>: Can wrap any allocator with <code>ArenaAllocator</code>, forcing the size to be <code>x*len(object)</code> , so that <code>alignedAlloc()</code> will work efficiently. (Example usage, parsers, char operations)</p>
 </div>
     </article>
   </div>
