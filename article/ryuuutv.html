@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css" />
+<style>
+.main {
+  width: 85%;
+  max-width: 600px;
+  margin: 50px auto 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: 85%;
+  }
+}
+
+.navigation {
+  margin-bottom: 50px;
+}
+.navigation a {
+  color: #ff001f;
+  text-decoration: underline solid;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+#homepage,
+#homepage body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.homepage-main {
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.homepage-title-area {
+  transition: opacity 1s;
+  margin-bottom: 60px;
+}
+
+.homepage-title,
+.homepage-subtitle {
+  text-align: center;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.homepage-title {
+  font-size: 30px;
+  margin: 0 0 10px;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-subtitle {
+  font-size: 12px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-navigation ul {
+  padding: 0;
+  text-align: center;
+}
+
+.homepage-navigation li {
+  list-style: none;
+  display: inline-block;
+  margin: 30px 0 0 30px;
+}
+.homepage-navigation li:first-child {
+  margin-left: 0;
+}
+
+.homepage-navigation a {
+  color: #dd4242;
+  text-decoration: none;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.homepage-navigation a:hover {
+  text-decoration: underline;
+}
+
+.about p {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.about li {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-top: 15px;
+}
+.about li a {
+  color: #000;
+  text-decoration: underline solid;
+}
+
+.article-title {
+  font-weight: normal;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.article-info {
+  color: #777777;
+  margin-bottom: 50px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.article-info span {
+  margin: 0 30px 0px 0;
+}
+
+.article-info .keyword {
+  margin: 5px 5px 0 0;
+  display: inline-block;
+}
+
+@font-face {
+  font-family: octicons-link;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.woff")
+    format('woff');
+}
+
+.blogs-list-block {
+  line-height: 1.5em;
+}
+.blogs-list-block ol {
+  margin-bottom: 60px;
+}
+@media screen and (max-width: 600px) {
+  .blogs-list-block ol {
+    padding-left: 1em;
+  }
+}
+.blogs-list-block li {
+  display: flex;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.annual-block {
+  margin-bottom: 50px;
+}
+
+.annual-block-headline {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.annual-block-title {
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+.annual-block-title.is-dir {
+  text-decoration: dotted underline;
+}
+
+.annual-block-date {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-right: 30px;
+  color: #999999;
+}
+
+.rss-link {
+  display: block;
+  width: 3em;
+  padding-left: 100%;
+  margin: 50px 0 100px -3em;
+  color: #000;
+}
+
+.error {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.error p {
+  font-size: 20px;
+}
+.error a {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  text-decoration: underline dotted;
+  color: #777777;
+}
+
+</style>
+
+    <title>
+      RyuuuTV事件 - Abby&#39;s Notes
+    </title>
+</head>
+
+<body>
+  <div class="main">
+    <nav class="navigation">
+      <a href="/">
+        Abby&#39;s Notes
+      </a>
+    </nav>
+    <article>
+      <header>
+        <h1 class="article-title">
+          RyuuuTV事件
+        </h1>
+        <div class="article-info">
+          <div>
+            <span>Created At: <time datetime="1731348653585">
+                2024-11-12 03:10
+              </time></span>
+            <span>Updated At: <time datetime="1731348749980">
+                2024-11-12 03:12
+              </time></span>
+          </div>
+          
+            <div>
+              Keywords: 
+                <span class="keyword">
+                  youtube
+                </span>
+                
+            </div>
+            
+        </div>
+      </header>
+      <div class="article-content markdown-body"><p>2024年, 人物: Ryu, Yuma, Tommy, 秦小姐（畫家）</p>
+<h2 id="原文">原文</h2>
+<h3 id="ryu-的-instagram">Ryu 的 Instagram</h3>
+<ul>
+<li><a title="https://www.instagram.com/p/DCL5mwOSCjf/" href="https://www.instagram.com/p/DCL5mwOSCjf/">https://www.instagram.com/p/DCL5mwOSCjf/</a></li>
+<li><a title="https://www.instagram.com/p/DCL5tO0yw9K/" href="https://www.instagram.com/p/DCL5tO0yw9K/">https://www.instagram.com/p/DCL5tO0yw9K/</a></li>
+</ul>
+<p>其實一直都跟Yuma談好，這一年發生的事情會跟大家說明，時機是12月台灣的見面活動（也就是我們最後的工作）後。但，我和yuma的事情，我和畫家的事情，卻在我的一個草率的行為為契機，曝光了。甚至「大好き(愛心)」這句話還是我拿畫家手機我自己打的。我怎麼了。</p>
+<p>好，都來到這一步了那我就不躲藏。讓大家對這件事情有更自由的了解，同時剝奪大家猜疑的自由。</p>
+<p>yuma篇</p>
+<p>去年十二月，從台灣回日本的飛機裡，在yuma的側臉和態度我明確感受到了「我失去了一個女兒」。yuma一向來喜愛撒嬌。我們的交往方式更像我是爸爸照顧女兒。但，突然的，沒有前兆的，yuma變「女人」了。沒錯，這時其實她明確的覺得自己背叛了我。yuma是個誠實到可怕的女人。一旦心裡沒有我，她對我的舉動不會有任何人文關懷。說白了，yuma不演。就像她心情不好時無法拍RyuuuTV那樣。我讚賞她這一點的。我該死的甚至覺得yuma變漂亮了。哪怕是出軌。我沒有在第一時間揭穿她。我們說好的方式是，先拉開距離。有了距離yuma說搞不好能重新認識我的重要性。我答應了。</p>
+<p>沒有在第一時間揭穿，這也許是我最大的過失。我不知道是因為我讀了很多破書，還是我本身就是一個蛋蛋不是很大的人，我的第一反應是「了解」她與他的故事。<br />
+「十年了才出軌，應該佩服」「他也許能給yuma我給不了的刺激吧」「老婆出軌，我得反省」我當下是這麼自省。甚至把他們的事情，化為力量，化為腳踏板，我當時在一個月寫了長篇小說去比賽，這也是這件事情個我的力量。再說，事情沒有絕對的黑白。任何感情的故事裡一定有浪漫，哪怕是短暫的生理需求，我不願意用「出軌」「不論」這些字眼去套在yuma身上。沒有比言語化更不自由的事了。我放任，我觀察，心平氣和的和yuma喝酒聊近況。</p>
+<p>事情冷冷的發生到，我手上傳來了出軌事實。。。</p>
+<p>在證據確鑿的情況下，我的想像空間之自由被綁架了。一切被證實之後，我是空白的。我就像自己摔了自己一個巴掌，腦袋裡裝的言語都是假，情感是真實的，是絕望的。哪怕是花了一個月去做心思準備。</p>
+<p>我還是沒揭穿。甚至無法提及對方的名字。這就是我的弱。當時yuma是坦承面對的。這是yuma的強。她和我距離拉開，這是出自於愧疚，當然還有對於我的生理反應：「你如果喜歡別人，還有辦法碰我嗎？」但那就是yuma。雖然我當下跟yuma說「你不是應該把努力放在拉近距離嗎？ 」但那就是yuma。她有自己解決的辦法，忍痛不去找聯繫對方，和我和他拉開距離，她想自己面壁解決這段該死的病。她說心裡無法控制地渴望著對方是自己的一種病態。她坦白跟我說當下是惋惜對方的，但還是想試著找回對我感覺。但，這一切都是後來才知道。「你也去玩吧」，這話我聽在心裡了。我們錯開 。</p>
+<p>然後我就認識畫家了。</p>
+<p>畫家篇</p>
+<p>屢次往東京跑。我也想去風俗店解決。但，我清楚我要的不是肉體。去夜店幾次，碰到觀眾我只幫忙搭訕。就在四月的一次機緣巧合碰到了，朋友的朋友。她就是畫家。<br />
+上面說的自己，是我的自我感覺。事實，偏差有點嚴重。我覺得我接受背叛，我覺得我走出來了，但你們問畫家就知道了。我的第一印象，我像具屍體，眼屎掛在快掉出來的大眼睛，駝著背，站姿也是東歪西倒的。我當時還以為，能接受老婆出軌的自己有多帥呢。<br />
+她不知道我是誰，只在共同認識的朋友裡，和我的嘴裡得知我的一些事情。我們像流程一樣，每週都在固「老地方」一群人碰面一起玩。慢慢的我倆走進了。一開始約好不能越軌。但我還是屢次犯規。我不由自主的把感情投入在她身上。<br />
+她幫助了我找回了自己和自信。我清楚知道我認識了她我才真正走出背叛導致的，那破損的自尊心。近30年的駝背都被治好，殭屍開始回血。當然我們之間的事，不是正確的，不是被支持的，她也不會好過，別說大眾，甚至朋友都不看好，至極当然。她知道我們不應該，她知道我終究有家可回，一開始我也是灰姑娘狀態，是我一點一點去打破人家防線，導致今天這樣不可收拾的局面發生，讓一個極有天份的畫家，還在努力求學的女學生，在網路上被人家痛罵。我感到非常愧疚。還有人去找人家導師麻煩，唉。<br />
+我不撤回「大好き❤️」，因為那是我遲早都要面對的。同時那也是事實。我們都不應該說假話來圓場。這個草率的行為拉快了我面對大眾的時間。不得不說，她也好勇敢不逃避。想像一下，每一秒都有一個人罵你，一天累積下來幾千封的信件，甚至有人說要上門抓姦，一般該如何承擔啊。在我差一點又要「駝背」的時候，她拿出一則消息說「你看，人家說你現在是插畫家」來逗我。昨天的「回應」，她是站在我這邊考量的，她願意自殺式的自己當壞人，說出我內心之前一直沒有說出來的話，設法挽回我的利益，她知道有些話只有她能說，所以她替我。也因為這樣，我才必須站出來解釋，我才有這個舞台出來解釋。</p>
+<p>Ryu篇</p>
+<p>Yuma閉關獨自一個人面對，讓我去舒緩情緒。而我在四月的時段認識了畫家，yuma當然不知道。5月尾，yuma於是跟我道歉自己的出軌行為，提出當時跟男方的具體內容。當時我們是有說有笑的。我貌似走出了，但我真的走出了嗎，我也不知道，但我似乎無法再面對突然回來的「女兒」。我沒有直接說出口，去對yuma溫柔。她演不了，而我也不是在演，我對她的好也是出自於無意識的。直到一天，我就像病態的一樣，跟yuma吃完飯的半夜開車去找畫家，一直沒有回來，電話也不接。讓yuma操心，她當下覺得我還是放不下背叛，甚至擔心我是不是尋死，直到早上回家我才坦然跟她說個明白我與畫家的事情。yuma當下出自於關心，她對我說「你活著就好」。這讓我更難過。同時我感受到了一些超越夫妻的羈絆。</p>
+<p>即使yuma認錯，我對畫家的情感還是沒淡下。Yuma不責怪，她覺得是自己的錯在先。我明確的跟她說，不是先後，yuma是契機，但即使不是，我遇到畫家仍然控制不住心動，只是可能會有克制的理由。而這次，一旦開始事情就是不可逆的。yuma尊重，有時候還會提出建議，這也是我感到欣慰的。yuma在自己的過錯中，她確確實實長大了。而我還是不夠強大，我不負責任，我沒有勇氣，一直沒在兩段感情上去做個明確的選擇讓兩位懸空。。。但我很清楚知道我對於這份感情有多認真，不是在玩。也不是病態。<br />
+站在我這邊的人也許你會這麼說，是Yuma先開始的。但，請不要這樣責怪她。她勇敢的面對了。你不知道這有多難。而我，是我，行為上和心情上都選擇了畫家，這半年，我屢次傷害yuma的事實是無可辯解的。，她每次選擇尊重，我也知道她私底下有低落的時候。<br />
+換我說出「那你也去玩，透透氣吧」<br />
+腳踏兩條船，怪不得腳斷了，觀眾說的幽默倒是挺對的。<br />
+口說離婚簡單，可是婚姻卻是那麼不可承受的重。我祈求著yuma的幸福，可是傷害她的不是別人，是我。<br />
+我還曾經覺得我沒有資格選擇。因為yuma和畫家都是優秀的人，應該像大部分動物那樣，她們選擇把我這個雄性惡緣給切斷。孬吧？<br />
+但我今天不會這麼想了。我在兩位身上學會太多事情。我要挺直的不只是背。我是時候成為要與年齡相符的大人樣。但，這個答案我不會潦草的這裡跟大家報告。我應該先面對自己，面對感情，而不是媒體。當然，事情有了進展，我和yuma都會向大家報告。</p>
+<p>我知道大家關心yuma。我也先說，不管我接下來的變化，我永遠都會關心yuma這個人。yuma的存在一直會到我死的那一天。即使分開，我願意把我的車房，我所擁有的給她。</p>
+<p>如果可以。如果觀眾對這樣的我還有些關心，憐憫都行，拜託不要去傷害yuma和畫家。也不要去罵男方。整個事情的大流程裡，惡的源頭還是在我這。我這邊隨時歡迎大家的情緒發洩。</p>
+<p>最後，再次跟yuma和大家道歉。在事情沒任何解釋的時候，發出「大好き❤️」是相當草率的行為。明明yuma po文是幫我們之間，去除觀眾的猜疑，而我自己丟出了一顆炸彈毀了心意。yuma一定很無語。同時，畫家的「回應」。她客觀的表現了我的心情和我口中不能說出的話，她自己選擇當壞角色，也許傷害了yuma，但都是出自於對我的關懷。同時給我一個，出來解釋的鋪墊。只有我說明，說不好才能保護大家。請不要再因為風向去選擇站在哪邊了。yuma，我是希望她能繼續在youtube上活動的。RyuuuTV雖然是我先開始的，但她在前幾年就比我還熱衷其中。這次她會選擇出來委婉的解釋，全是因為她對觀眾的負責。我希望她能繼續走這條路，即使我被罵的不行，她是不行的。</p>
+<p>謝謝大家閱讀到最後。</p>
+<h3 id="yuma-的-instagram">Yuma 的 Instagram</h3>
+<p><a title="https://www.instagram.com/p/DCOuN9Szmvn/" href="https://www.instagram.com/p/DCOuN9Szmvn/">https://www.instagram.com/p/DCOuN9Szmvn/</a></p>
+<p>這次的事情，讓我們的關係人還有一直以來支持我們的大家很困擾，擔心，真的很抱歉。<br />
+我知道已經有很多情報被公開了，也有不少人因此離開我。<br />
+我也看到了大家的反應。<br />
+不過在這裡也請讓我最後一次對這件事說些話。<br />
+即使在這樣的情況下，還是有說想要支持我的人。我想真誠地向大家說話。</p>
+<p>在上一次的我的發文裡，我說過等到能說的時候一定會和Ryu一起向大家解釋。<br />
+那是因為還有一些工作在進行中，我們不應該因為個人的事情讓其他人困擾。</p>
+<p>我們本來打算工作全部完成後，我們會根據當時的狀況來決定要說什麼。<br />
+連我們自己都不知道以後我們會怎麼樣<br />
+但我自己有決定的是<br />
+如果在今年最後的工作結束之前Ryu的心沒有回來的話，我就會跟大家說在今年結束時我退出RyuuuTV<br />
+雖然到時候我不知道該怎麼向觀眾們說明，但我知道我們總得在某個時候做出一個了結。</p>
+<p>本來關於這件事，我認為不需要把所有發生的事情都說出來。<br />
+這並不是因為我想隱瞞自己所犯的錯誤，而是因為這是我和Ryu夫妻之間的問題。<br />
+但是既然所有的事情都已經公開了，在這樣的情況下我也是想要好好跟大家說是我先深深傷害了Ryu</p>
+<p>我做了不應該做的事。這一年的時間我都感到罪惡感。<br />
+同時，我也感到自己背叛了支持我們的溫柔的觀眾。<br />
+在我深深自責的時候，我也考慮過馬上退出RyuuuTV，停止所有公開的活動。<br />
+當我把這個想法告訴Ryu時，他卻說「不需要退出，能出現時出現就好」<br />
+我們談過很多次，時間慢慢治癒了我們<br />
+確實我做錯了，但感覺我們的關係也因為這樣更緊密了。</p>
+<p>我上次在Instagram發文的原因是<br />
+那天RyuuuTV的影片留言裡還有最近收到的訊息裡，對我們的沉默感到疑惑的人越來越多，我自己判斷應該跟大家說明一下現階段能說的事情。（文章的內容我有先讓Ryu確認，只是他當時沒有注意到我馬上發布了。）</p>
+<p>.</p>
+<p>我看到了很多意見。</p>
+<p>我是個軟弱的人。<br />
+既然是我先犯錯，那不管之後發生什麼都必須承受。<br />
+有時候我能夠堅強。<br />
+最近的影片中，我一直一個人去很多地方或是積極地過著一人的時間，看到這樣的我很多觀眾說喜歡現在的我</p>
+<p>但我也有軟弱的時候。<br />
+有時候無法忍受這個孤單，這種感覺也會不自覺地透露在我的Instagram或YouTube內容中。<br />
+即使看起來我在鼓勵自己努力增強一個人活下去的力量<br />
+但在背後，弱小的自己痛苦地叫喊<br />
+讓我忍不住在網路上透露出來<br />
+觀眾的大家也許看到我這樣看起來很寂寞的樣子，開始覺得雖然不知道發生了什麼但想要鼓勵Yuma一下<br />
+這些留言也溫暖了我</p>
+<p>過去這半年，我一直處在這樣的狀態，然後發生了這次的幾個發文<br />
+在大家不知道是我先犯錯的情況下事情變成這樣，一開始很多觀眾站在我這邊。<br />
+我在上次的Instagram發文後，發布了三個限時動態<br />
+前兩個只是對我那一天發文的補充說明<br />
+第三個可能是因為我內心的軟弱，所以才發佈了<br />
+我看到他們的貼文後感到生氣，傷心，我也從心覺得請把事情說明一下，無法壓抑情緒的狀態就去寫「我也是跟大家一樣的心情」這句話。<br />
+結果似乎讓更多人對Ryu產生了負面印象。</p>
+<p>我看到很多意見是說 這半年的我的態度讓大家的印象操控，我是在邊這麼做邊隱瞞自己的過錯。<br />
+被大家那麼說也是理所當然的<br />
+雖然我從來沒想過要操控印象隱瞞自己的錯<br />
+但我透露了孤單寂寞的情緒，結果讓大家覺得「Yuma很可憐」的印象</p>
+<p>一直相信並溫暖支持我的大家<br />
+知道真相後應該感到驚訝、傷害、憤怒和難過。<br />
+我做了這樣的事，讓大家失望，真的很抱歉。<br />
+大家對我有著善良好老婆的形象，但我卻不是善良好老婆<br />
+自己出軌，給Ryu和我們十年的關係造成了深深的傷害<br />
+也辜負了大家的信任。真的對不起。</p>
+<p>本來關於這件事不需要把所有發生的事情都說出來的，但事情變成這樣<br />
+這或許是原本我應該接受的懲罰</p>
+<p>我想傳達給大家的就這些。<br />
+我也知道批評的聲音會繼續，因為我做了該被批評的事。離開的人會離開 。應該是那樣的。</p>
+<p>只是<br />
+當一切都被公開後，還願意給我溫暖訊息的那些人<br />
+為了讓你們收到我的心意，我寫了這篇文章。<br />
+謝謝。真的謝謝你們。<br />
+對不起有關這件事一直讓大家讀這麼長很複雜的東西。謝謝看到最後。</p>
+<h3 id="tommy-的-instagram">Tommy 的 Instagram</h3>
+<p><a title="https://www.instagram.com/p/DCOM9agPA2A/" href="https://www.instagram.com/p/DCOM9agPA2A/">https://www.instagram.com/p/DCOM9agPA2A/</a></p>
+<p>沒有選擇第一時間出來說明、是有很多的顧慮、非常抱歉。</p>
+<p>關於我跟Ryu Yuma的事情。</p>
+<p>如同Ryu IG上的po文內容<br />
+從我這邊想跟大家說明、po文裡面說的「男方」確實是我</p>
+<p>2023年12月中。Ryu Yuma來台灣工作時、我跟Yuma兩個人有見面</p>
+<p>2023年12月底。我跟Yuma在大阪見面</p>
+<p>2024年1月底。我跟Yuma在橫濱見面</p>
+<p>以上都是我們互相用訊息聯絡、見面了這幾次</p>
+<p>從2024年3月開始、已經沒有跟Yuma任何聯絡。雖然發現錯誤已經晚了、不過後來反思反省自己這件事非常不對的</p>
+<p>一直到前幾天、女畫家提到我介入Ryu Yuma的關係、雖然後面發生的關於女畫家的事情我也不清楚。不過這整個事情、因為我的重大過錯而延伸到後面發生的事情、所以也一定要接受大家的批判</p>
+<p>我沒有說話、因為Ryu Yuma本人都沒有說話, 如果我先說了也很不對。我只能自己跟Ryu道歉、因為我的過錯破壞我們之間的信任和友誼、但如果他同意我同時跟大家道歉、我很願意這樣做。<br />
+只是從他po文裡面沒有提到我的名字、也要保護他想保護的人、也沒有告訴我可不可以這樣做、所以我就先不說、因為我真的最想最應該說對不起的是他。也不想在沒有經過他同意的情況下公開說對不起</p>
+<p>這是我重大過錯、必須要接受大家批評。我讓很多人失望</p>
+<p>Ryu IG上po文的內容、 Ryu有提到說「整個事情的大流程裡、惡的源頭還是在我這」<br />
+想跟Ryu、 大家想強調「整個事情的大流程裡、惡的源頭是在我Tommy這」我真的不應該做這樣的事情造成大家的困擾並傷害這麼多人。</p>
+<p>經過共同的朋友轉達、他尊重我要不要公開發文的決定。<br />
+很謝謝他的寬容、讓我有機會跟大家說、我真的做錯事情、想在這邊跟大家好好的講對不起、也想再一次跟他們說對不起、雖然我知道再多的對不起也沒有用、但是我想說的</p>
+<h3 id="秦小姐畫家的-instagram">秦小姐（畫家）的 Instagram</h3>
+<p><a title="https://www.instagram.com/p/DCJxcTmSfVX/" href="https://www.instagram.com/p/DCJxcTmSfVX/">https://www.instagram.com/p/DCJxcTmSfVX/</a></p>
+<p>关于这场闹剧：发那篇备受非议的动态的时候我和ryu及好友数人正在喝酒聚会，并不知道yuma小姐在一个小时前发了那条令人悱恻的帖文。原本只是想整理一下最近的作品发出来，仅此而已别无其他目的。在酒精营造的氛围中听到了“要加文字啊加上大好き”为闹剧的筑成增加了重要的砖块。之后所有人都喝醉了，也就没有人看手机了。</p>
+<p>2023年底yuma出轨同为youTuber的tomitomi，并疏远ryu。<br />
+2024年4月，我和ryu相识。</p>
+<p>我认识ryu的时候，他已经独自从一段漫长的心理自愈中走出来。这个过程有多漫长呢……<br />
+Ryu刚有所察觉的那个瞬间全身发麻，但没有给过yuma小姐一点脾气，他试图去理解这个事情最后得出结论：可能我给不了yuma她想要的刺激吧。<br />
+而Yuma小姐在ryu拉她胳膊的时候直接甩开并说出了十分伤害ryu的话“难道你在喜欢一个人的时候可以忍受和别人有肢体接触吗”。<br />
+在Yuma小姐和tomi先生的某个刚约完会的晚上，ryu还为乱糟糟的yuma递上了50万円的包包作为交往十周年纪念的礼物。<br />
+Yuma小姐出于愧疚让ryu去风俗店玩。ryu无法接受这个提议，但开始频繁来东京找朋友喝酒，我们就是在这个情况下通过共同的朋友认识的、听着ryu在ktv唱着一首首曾经唱给yuma小姐的歌认识的。</p>
+<p>我判断ryu已经从上一段感情走出来了，我接受了这段感情。这意味着我介入了别人的婚姻，但我并未介入别人的感情。</p>
+<p>Ryu从始至终都有好好保护yuma，这也成为了我们唯一的吵架素材，甚至多次差点分开。他说他们虽然没有恋爱的感觉了但他还爱yuma这个人，如果yuma想要分开了他也会尽可能给她好一点的生活。他不会在yuma面前接我的电话，即使两方心知肚明他也不想yuma听到别的女生的声音。<br />
+即使是现在，他也在保护yuma，他说“我名声烂一点没关系啊，我还可以干别的工作”。</p>
+<p>我没有这么温柔的心。<br />
+Yuma小姐，薄情寡义是你、背信弃义是你、落井下石的还是你。<br />
+我难以想象你是多么自私才会在这场闹剧里发出最后的封顶之作——那三条story！<br />
+我无法接受，ryu一直如此守护的人会在这种时候做出这样的第一反应；我无法接受，在这次风波中ryu承担了一切舆论而yuma小姐你独自享受观众对你的保护；我无法接受，这样温柔的人还要替真正的婚姻过错方承受谩骂。</p>
+<p>最后致关心我的朋友：<br />
+不用担心我，我没事。我只会更加勇敢、坚定、智慧。</p>
+<h2 id="概要">概要</h2>
+<h3 id="ryu部分">Ryu部分</h3>
+<ol>
+<li>時間軸：</li>
+</ol>
+<ul>
+<li>2023年12月：Ryu察覺到Yuma有了變化，暗示她有出軌情況</li>
+<li>2024年4月：Ryu認識了畫家</li>
+<li>2024年5月底：Yuma向Ryu坦承出軌事實</li>
+</ul>
+<ol start="2">
+<li>關於Yuma的部分：</li>
+</ol>
+<ul>
+<li>Yuma出軌後主動選擇與Ryu保持距離</li>
+<li>Yuma很誠實地承認了自己的過錯</li>
+<li>她選擇獨自面對這個問題，並努力想找回對Ryu的感覺</li>
+</ul>
+<ol start="3">
+<li>關於畫家的部分：</li>
+</ol>
+<ul>
+<li>是透過朋友認識</li>
+<li>幫助Ryu重拾自信</li>
+<li>最近的"大好き❤️"留言是Ryu用畫家的手機發的</li>
+<li>畫家因此事受到網路攻擊</li>
+</ul>
+<ol start="4">
+<li>關於Ryu自己：</li>
+</ol>
+<ul>
+<li>承認自己在處理兩段感情時不夠負責任</li>
+<li>表示雖然Yuma先出軌，但自己選擇了畫家是事實</li>
+<li>表示會繼續關心Yuma，願意給她財產</li>
+<li>承認發"大好き❤️"留言是個草率的決定</li>
+</ul>
+<ol start="5">
+<li>對觀眾的請求：</li>
+</ol>
+<ul>
+<li>請不要攻擊Yuma和畫家</li>
+<li>希望Yuma能繼續在YouTube活動</li>
+<li>表示願意承擔所有的負面評論</li>
+</ul>
+<h3 id="yuma部分">Yuma部分</h3>
+<ol>
+<li>關於原定計畫：</li>
+</ol>
+<ul>
+<li>本來預計等所有工作結束後再跟大家解釋</li>
+<li>如果年底前Ryu的心意沒有回來，她計畫退出RyuuuTV</li>
+</ul>
+<ol start="2">
+<li>關於出軌事件：</li>
+</ol>
+<ul>
+<li>承認是自己先背叛了Ryu</li>
+<li>這一年來一直感到強烈的罪惡感</li>
+<li>曾考慮立即退出所有公開活動，但Ryu勸她不需要</li>
+</ul>
+<ol start="3">
+<li>關於近期的社群媒體發文：</li>
+</ol>
+<ul>
+<li>Instagram發文是因為看到觀眾的疑惑越來越多</li>
+<li>承認最後一則限時動態是因為情緒失控才發布</li>
+<li>對於可能誤導觀眾對Ryu的印象表示歉意</li>
+</ul>
+<ol start="4">
+<li>對自己形象的反省：</li>
+</ol>
+<ul>
+<li>承認這半年來在社群媒體上展現出的孤單寂寞，可能誤導了觀眾</li>
+<li>否認有意操控印象或隱瞞自己的過錯</li>
+<li>對於辜負"善良好老婆"的形象深感歉意</li>
+</ul>
+<ol start="5">
+<li>對支持者的感謝與歉意：</li>
+</ol>
+<ul>
+<li>向一直支持她的粉絲道歉</li>
+<li>理解有人會因此離開</li>
+<li>感謝在事情公開後依然給予溫暖支持的人</li>
+</ul>
+<h3 id="tommy部分">Tommy部分</h3>
+<ol>
+<li>時間軸說明：</li>
+</ol>
+<ul>
+<li>2023年12月中：在台灣與Yuma見面</li>
+<li>2023年12月底：在大阪與Yuma見面</li>
+<li>2024年1月底：在橫濱與Yuma見面</li>
+<li>2024年3月後：已無任何聯絡</li>
+</ul>
+<ol start="2">
+<li>關於事件承認：</li>
+</ol>
+<ul>
+<li>確認自己就是Ryu文章中提到的"男方"</li>
+<li>承認與Yuma有見面往來</li>
+<li>表示雖然發現錯誤已晚，但已經反省這件事的不對</li>
+</ul>
+<ol start="3">
+<li>為何現在才說明：</li>
+</ol>
+<ul>
+<li>因為Ryu和Yuma都未公開說明，所以自己也不便先開口</li>
+<li>直到得到Ryu通過共同朋友轉達的同意後才發文</li>
+</ul>
+<ol start="4">
+<li>道歉內容：</li>
+</ol>
+<ul>
+<li>強調自己才是"整個事情的大流程裡的惡的源頭"</li>
+<li>承認這是自己的重大過錯</li>
+<li>向Ryu、Yuma和所有人道歉</li>
+<li>表示造成大家困擾並傷害很多人</li>
+</ul>
+<h3 id="秦小姐畫家部分">秦小姐(畫家)部分</h3>
+<ol>
+<li>關於爭議性動態發文：</li>
+</ol>
+<ul>
+<li>發文當時正在和Ryu等人喝酒聊天</li>
+<li>不知道Yuma剛發過文章</li>
+<li>"大好き"的字眼是在酒後氛圍中加上的</li>
+</ul>
+<ol start="2">
+<li>時間線說明：</li>
+</ol>
+<ul>
+<li>2023年底：Yuma出軌Tommy</li>
+<li>2024年4月：秦小姐與Ryu相識</li>
+</ul>
+<ol start="3">
+<li>關於Ryu的描述：</li>
+</ol>
+<ul>
+<li>Ryu發現Yuma出軌時完全沒發脾氣</li>
+<li>曾送Yuma價值50萬日圓的包包作為十周年紀念</li>
+<li>即使在知道出軌後，仍持續保護Yuma</li>
+<li>不在Yuma面前接秦小姐的電話</li>
+<li>願意承擔負面輿論以保護Yuma</li>
+</ul>
+<ol start="4">
+<li>對Yuma的批評：</li>
+</ol>
+<ul>
+<li>認為Yuma是真正的婚姻過錯方</li>
+<li>批評Yuma在這次事件中的三則限時動態</li>
+<li>不滿Yuma讓Ryu承擔所有輿論批評</li>
+<li>指責Yuma的自私行為</li>
+</ul>
+<ol start="5">
+<li>對自己立場的說明：</li>
+</ol>
+<ul>
+<li>承認介入婚姻但否認介入感情</li>
+<li>表示這段關係是在Ryu走出上段感情後才開始</li>
+<li>強調自己會更加勇敢、堅定和智慧</li>
+</ul>
+<h2 id="總結">總結</h2>
+<p>事件時間線：</p>
+<ul>
+<li>2023年12月：Yuma與Tommy開始出軌關係</li>
+<li>2024年3月：Yuma與Tommy結束聯繫</li>
+<li>2024年4月：Ryu認識畫家(秦小姐)</li>
+<li>2024年5月底：Yuma向Ryu坦承出軌事實</li>
+</ul>
+<p>事件關鍵點：</p>
+<ol>
+<li>最初的婚姻危機：</li>
+</ol>
+<ul>
+<li>Yuma先出軌Tommy</li>
+<li>Ryu察覺後選擇理解和包容</li>
+<li>雙方協議拉開距離</li>
+</ul>
+<ol start="2">
+<li>後續發展：</li>
+</ol>
+<ul>
+<li>Ryu在此期間認識畫家</li>
+<li>發展出新感情關係</li>
+<li>Yuma後來坦承並道歉</li>
+<li>Ryu也向Yuma坦白新戀情</li>
+</ul>
+<ol start="3">
+<li>事件公開：</li>
+</ol>
+<ul>
+<li>起因是畫家在酒後發布的"大好き"動態</li>
+<li>Yuma的回應限時動態引發輿論風波</li>
+<li>導致四人相繼發文說明</li>
+</ul>
+<ol start="4">
+<li>各方態度：</li>
+</ol>
+<ul>
+<li>Ryu：承認現在選擇了畫家，但表示會永遠關心Yuma</li>
+<li>Yuma：承認自己的過錯，表達歉意</li>
+<li>Tommy：完全認錯，承擔事件源頭責任</li>
+<li>畫家：為Ryu辯護，強烈批評Yuma的處理方式</li>
+</ul>
+<ol start="5">
+<li>目前狀況：</li>
+</ol>
+<ul>
+<li>RyuuuTV的未來走向未定</li>
+<li>Ryu與Yuma的婚姻狀況待定</li>
+<li>各方都受到不同程度的網路批評</li>
+</ul>
+<h2 id="描寫和評論">描寫和評論</h2>
+<p>Ryu:</p>
+<ul>
+<li>性格溫和且包容，即使在發現妻子出軌後也試圖理解而非譴責</li>
+<li>展現出成熟的處事態度，願意承擔責任和輿論壓力</li>
+<li>有保護慾，不論對Yuma還是畫家都表現出維護的態度</li>
+<li>缺點是在處理兩段感情時優柔寡斷，沒有及時做出明確選擇</li>
+<li>整體呈現出一個成熟但略顯軟弱的男性形象</li>
+</ul>
+<p>Yuma:</p>
+<ul>
+<li>性格直率，不會偽裝自己的感受</li>
+<li>在犯錯後有明確的悔意和坦承</li>
+<li>但處理危機的方式不夠成熟，社交媒體的發文有時過於情緒化</li>
+<li>在整個事件中表現出矛盾的特質：一方面誠實認錯，一方面又在社媒上引發爭議</li>
+<li>給人一種還在成長過程中的感覺</li>
+</ul>
+<p>Tommy:</p>
+<ul>
+<li>表現出明確的悔意</li>
+<li>發文最為克制和理性</li>
+<li>完全承擔責任，不推卸過錯</li>
+<li>在三方中最晚發聲，顯示出對當事人的尊重</li>
+<li>整體表現出一個犯錯後願意承擔的形象</li>
+</ul>
+<p>秦小姐（畫家）：</p>
+<ul>
+<li>性格直接且強勢，敢於表達自己的立場</li>
+<li>對Ryu表現出強烈的保護慾</li>
+<li>在描述事件時較為主觀和情緒化</li>
+<li>對Yuma的批評相當尖銳</li>
+<li>給人一種富有個性且勇於捍衛感情的形象</li>
+</ul>
+</div>
+    </article>
+  </div>
+</body>
+
+</html>
