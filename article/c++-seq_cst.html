@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css" />
+<style>
+.main {
+  width: 85%;
+  max-width: 600px;
+  margin: 50px auto 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: 85%;
+  }
+}
+
+.navigation {
+  margin-bottom: 50px;
+}
+.navigation a {
+  color: #ff001f;
+  text-decoration: underline solid;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+#homepage,
+#homepage body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.homepage-main {
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.homepage-title-area {
+  transition: opacity 1s;
+  margin-bottom: 60px;
+}
+
+.homepage-title,
+.homepage-subtitle {
+  text-align: center;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.homepage-title {
+  font-size: 30px;
+  margin: 0 0 10px;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-subtitle {
+  font-size: 12px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.homepage-navigation ul {
+  padding: 0;
+  text-align: center;
+}
+
+.homepage-navigation li {
+  list-style: none;
+  display: inline-block;
+  margin: 30px 0 0 30px;
+}
+.homepage-navigation li:first-child {
+  margin-left: 0;
+}
+
+.homepage-navigation a {
+  color: #dd4242;
+  text-decoration: none;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.homepage-navigation a:hover {
+  text-decoration: underline;
+}
+
+.about p {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.about li {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-top: 15px;
+}
+.about li a {
+  color: #000;
+  text-decoration: underline solid;
+}
+
+.article-title {
+  font-weight: normal;
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.article-info {
+  color: #777777;
+  margin-bottom: 50px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.article-info span {
+  margin: 0 30px 0px 0;
+}
+
+.article-info .keyword {
+  margin: 5px 5px 0 0;
+  display: inline-block;
+}
+
+@font-face {
+  font-family: octicons-link;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.woff")
+    format('woff');
+}
+
+.blogs-list-block {
+  line-height: 1.5em;
+}
+.blogs-list-block ol {
+  margin-bottom: 60px;
+}
+@media screen and (max-width: 600px) {
+  .blogs-list-block ol {
+    padding-left: 1em;
+  }
+}
+.blogs-list-block li {
+  display: flex;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.annual-block {
+  margin-bottom: 50px;
+}
+
+.annual-block-headline {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+
+.annual-block-title {
+  font-family: apple-system, 'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+.annual-block-title.is-dir {
+  text-decoration: dotted underline;
+}
+
+.annual-block-date {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  margin-right: 30px;
+  color: #999999;
+}
+
+.rss-link {
+  display: block;
+  width: 3em;
+  padding-left: 100%;
+  margin: 50px 0 100px -3em;
+  color: #000;
+}
+
+.error {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.error p {
+  font-size: 20px;
+}
+.error a {
+  font-family: 'Lucida Console', 'Liberation Mono', Menlo, Monaco, Roboto, apple-system,
+    'Helvetica Neue', Arial, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
+  text-decoration: underline dotted;
+  color: #777777;
+}
+
+</style>
+
+    <title>
+      C++ 什麼場景下一定要使用 seq_cst 內存序？ - Abby&#39;s Notes
+    </title>
+<link rel="stylesheet" href="/_markdown_plugin_assets/highlight.js/atom-one-light.css" /></head>
+
+<body>
+  <div class="main">
+    <nav class="navigation">
+      <a href="/">
+        Abby&#39;s Notes
+      </a>
+    </nav>
+    <article>
+      <header>
+        <h1 class="article-title">
+          C++ 什麼場景下一定要使用 seq_cst 內存序？
+        </h1>
+        <div class="article-info">
+          <div>
+            <span>Created At: <time datetime="1736265590022">
+                2025-01-08 00:59
+              </time></span>
+            <span>Updated At: <time datetime="1737732281249">
+                2025-01-25 00:24
+              </time></span>
+          </div>
+          
+        </div>
+      </header>
+      <div class="article-content markdown-body"><p>同步強度和執行成本的順序一樣（從弱到強）：</p>
+<p>relaxed &lt; consume &lt; acquire/release &lt; acq_rel &lt; seq_cst</p>
+<p>但其實他們有自己的特性</p>
+<table>
+<thead>
+<tr>
+<th>Memory Order</th>
+<th>類型</th>
+<th>同步保證</th>
+<th>重排序限制</th>
+<th>性能開銷</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>relaxed</td>
+<td>最弱</td>
+<td>僅保證原子性</td>
+<td>幾乎無限制</td>
+<td>最低</td>
+<td>計數器、狀態標誌</td>
+</tr>
+<tr>
+<td>acquire</td>
+<td>單向同步</td>
+<td>讀屏障</td>
+<td>後續讀寫不能重排到此操作前</td>
+<td>中等</td>
+<td>讀取共享數據、鎖的獲取</td>
+</tr>
+<tr>
+<td>release</td>
+<td>單向同步</td>
+<td>寫屏障</td>
+<td>之前的讀寫不能重排到此操作後</td>
+<td>中等</td>
+<td>寫入共享數據、鎖的釋放</td>
+</tr>
+<tr>
+<td>acq_rel</td>
+<td>雙向同步</td>
+<td>讀寫屏障</td>
+<td>前後讀寫都不能跨越此操作</td>
+<td>較高</td>
+<td>讀改寫操作(RMW)</td>
+</tr>
+<tr>
+<td>seq_cst</td>
+<td>最強</td>
+<td>全序</td>
+<td>所有操作嚴格有序</td>
+<td>最高</td>
+<td>需要嚴格順序的場景</td>
+</tr>
+<tr>
+<td>consume</td>
+<td>數據依賴</td>
+<td>依賴序</td>
+<td>僅限數據依賴的操作</td>
+<td>低</td>
+<td>指針/引用傳遞（不推薦使用）</td>
+</tr>
+</tbody>
+</table>
+<p>只<code>seq_cst</code>相關的部分，如有需要補充我再寫。</p>
+<p>簡單來說：<br />
+有任何Thread間的數據依賴，應該使用比relaxed更強的內存序 例如: acq_rel 和 seq_cst</p>
+<p>acq_rel 在某些架構上（如x86）的release幾乎無開銷</p>
+<p>以下用一個經典的例子來展示 memory_order_acq_rel 和 memory_order_seq_cst 的關鍵區別：</p>
+<div><pre class="hljs"><code><span class="hljs-comment">// seq_cst 适合的场景：需要严格顺序的多线程操作</span>
+std::atomic&lt;<span class="hljs-type">bool</span>&gt; x{<span class="hljs-literal">false</span>}, y{<span class="hljs-literal">false</span>};
+std::atomic&lt;<span class="hljs-type">int</span>&gt; z{<span class="hljs-number">0</span>};
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">thread1</span><span class="hljs-params">()</span> </span>{
+    x.<span class="hljs-built_in">store</span>(<span class="hljs-literal">true</span>, std::memory_order_seq_cst);
+    <span class="hljs-keyword">if</span> (y.<span class="hljs-built_in">load</span>(std::memory_order_seq_cst)) {
+        z.<span class="hljs-built_in">fetch_add</span>(<span class="hljs-number">1</span>, std::memory_order_seq_cst);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">thread2</span><span class="hljs-params">()</span> </span>{
+    y.<span class="hljs-built_in">store</span>(<span class="hljs-literal">true</span>, std::memory_order_seq_cst);
+    <span class="hljs-keyword">if</span> (x.<span class="hljs-built_in">load</span>(std::memory_order_seq_cst)) {
+        z.<span class="hljs-built_in">fetch_add</span>(<span class="hljs-number">1</span>, std::memory_order_seq_cst);
+    }
+}</code></pre></div>
+<div><pre class="hljs"><code><span class="hljs-comment">// Thread 1             // Thread 2</span>
+x.store(<span class="hljs-literal">true</span>)          y.store(<span class="hljs-literal">true</span>)
+y.load()               x.load()
+
+可能的 seq_cst 執行順序：
+<span class="hljs-number">1</span>. <span class="hljs-function"><span class="hljs-title">x</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">y</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">y</span>.load -&gt;</span> x.load  (Thread <span class="hljs-number">1</span> 看到 y=<span class="hljs-literal">true</span>)
+<span class="hljs-number">2</span>. <span class="hljs-function"><span class="hljs-title">y</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">x</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">y</span>.load -&gt;</span> x.load  (Thread <span class="hljs-number">2</span> 看到 x=<span class="hljs-literal">true</span>)
+<span class="hljs-number">3</span>. <span class="hljs-function"><span class="hljs-title">x</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">y</span>.load -&gt;</span> <span class="hljs-function"><span class="hljs-title">y</span>.store -&gt;</span> x.load
+<span class="hljs-number">4</span>. <span class="hljs-function"><span class="hljs-title">y</span>.store -&gt;</span> <span class="hljs-function"><span class="hljs-title">x</span>.load -&gt;</span> <span class="hljs-function"><span class="hljs-title">x</span>.store -&gt;</span> y.load
+
+但不可能同時出現：
+Thread <span class="hljs-number">1</span>: 看到 y=<span class="hljs-literal">false</span>
+Thread <span class="hljs-number">2</span>: 看到 x=<span class="hljs-literal">false</span>
+
+</code></pre></div>
+<p>在 seq_cst 下，z 至少會增加一次。而在 acq_rel 下，因為沒有全序的保證，可能兩個線程都看不到對方的寫入。</p>
+</div>
+    </article>
+  </div>
+</body>
+
+</html>
